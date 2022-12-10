@@ -12,6 +12,20 @@ function buildDeck() {
     })
 
     
-    console.log(deck)
+    console.log(deck, deck.length)
 }
 buildDeck()
+
+//shuffling deck
+let shufDeck = [];
+function buildshufDeck() {
+    for (let i = 0; i < 52; i++) {
+        let number = 0;
+         number = Math.floor(Math.random()* deck.length)
+         let remove = deck.splice(number, 1) // we taking it out so it doesn't repeat itself.
+        shufDeck.push(remove[0]); // to acces a specific card of array then ypu need a square.
+        
+    }
+console.log(shufDeck)
+}
+buildshufDeck()
