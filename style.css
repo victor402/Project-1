@@ -3,9 +3,18 @@ body{
     text-align: center;
     margin: 3px;
 }
-#dealerCard, #playerCard {
+#dealerCard img {
     display: flex;
+    height: 150px;
+    width: 100px;
+    margin-left: 600px;
     
 }
 
+#dealerCard img {
+    display: flex;
+    height: 150px;
+    width: 100px;
+    margin-left: 600px;
+}
 
