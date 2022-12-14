@@ -3,7 +3,7 @@
 const values = ["A", "02", "03", "04", "05", "06", "07", "08", "09", "10", "K", "Q", "J"]
 const suits = ["c", "d", "h", "s"]
 let deck = [];
-function buildDeck() {
+function buildDeck(values, suits) {
     values.forEach(function(value) {
         suits.forEach(function(suit) {
             deck.push(suit + value);
@@ -14,7 +14,7 @@ function buildDeck() {
     
     //console.log(deck, deck.length)
 }
-buildDeck()
+buildDeck(values, suits)
 
 //shuffling deck
 let shufDeck = [];
@@ -30,21 +30,38 @@ function buildshufDeck() {
 }
 buildshufDeck()
 
-// // dealing the dealer's hand and player's hand
-// const dealerHand = [];
-// function buidDealerHand() {
-// for (let i = 0; i < 2; i++) {
-//     dealerHand.push(buildDeck)
-// }
-// console.log(dealerHand)
-// }
-// buidDealerHand();
-// //const playerHand = [];
-// //dealerHand.push(buildshufDeck);
-// //dealerHand.push(buildshufDeck);
-// //playerHand.push(buildshufDeck);
-// //playerHand.push(buildshufDeck);
 
-// //console.log(dealerHand);
-// //console.log(playerHand);
+// dealing the dealer's hand and player's hand
+const dealerHand = [];
+function buidDealerHand() {
+for (let i = 0; i < 2; i++) {
+    dealerHand.push(shufDeck[i]) // the i helps use put the shufDeck cards into the// array.
+    let newImg = document.createElement("div");
+    if(i === 0) {
+        newImg.classList.add("card", "back")
+    } else {
+        newImg.classList.add("card", dealerHand[i]) // the i tells it to do the cards progressively.this are two strings.
+    }
+       document.getElementById("dealerCard").append(newImg)
+    
+}
+//console.log(dealerHand)
+
+
+};
+buidDealerHand();
+
+const playerHand = [];
+function buildPlayerHand() {
+    for (let i = 0; i < 2; i++) {
+        playerHand.push(shufDeck[i]);
+        let newImg = document.createElement("div");
+        newImg.classList.add("card", shufDeck[i]);
+        document.getElementById("playerCard").append(newImg)
+    }
+    console.log(playerHand)
+}
+buildPlayerHand();
+
+
 
