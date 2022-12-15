@@ -1,7 +1,7 @@
 //console.log("hello world!");
 // building deck
-const playerPoint = 0;
-const dealerPoint = 0;
+let playerPoint = 0;
+let dealerPoint = 0;
 const values = ["A", "02", "03", "04", "05", "06", "07", "08", "09", "10", "K", "Q", "J"]
 const suits = ["c", "d", "h", "s"]
 let deck = [];
@@ -45,7 +45,7 @@ for (let i = 0; i < 2; i++) {
     } else {
         newImg.classList.add("card", dealerHand[i]) // the i tells it to do the cards progressively.this are two strings.
     }
-       //dealerPoint += getvalue;
+       dealerPoint += getvalue(dealerHand[i]); //dealer hand because thats where the card is and it will iterate it.
        document.getElementById("dealerCard").append(newImg)
     
 }
@@ -62,7 +62,7 @@ function buildPlayerHand() {
         playerHand.push(lastCard);
         
         let newImg = document.createElement("div");
-        //playerPoint += getvalue;
+        playerPoint += getvalue(playerHand[i]); // here we use i because we have a for loop that has an iterator.
         newImg.classList.add("card", playerHand[i]);
         document.getElementById("playerCard").append(newImg)
     }
@@ -84,22 +84,34 @@ function getvalue(card) {
     }
 
 }
-console.log(getvalue(dealerHand[1]))
+// we dont have to call the function if we already use return.
+//console.log(getvalue(dealerHand[1]))
 
  // start the game 
 
  document.getElementById("add").addEventListener("click", function(){
     if (playerPoint < 21) {
+        let newCard = shufDeck.pop();
+         playerHand.push(newCard);
+         playerPoint += getvalue(playerHand[playerHand.length-1]) // this add the new sum of the playerHand.
         let newImg = document.createElement("div");
-        newImg.classList.add("card", playerHand[i]);
+        newImg.classList.add("card", playerHand[playerHand.length-1]);
         document.getElementById("playerCard").append(newImg)
-    } else if (dealerPoint < 20) {
-        let newImg = document.createElement("div");
-        newImg.classList.add("card", dealerHand[i]);
-        document.getElementById("dealerCard").append(newImg)
-    } else {
+    }  else {
         return;
     }
+})
+document.getElementById("add").addEventListener("click", function() {
+    if (dealerPoint < 20) {
+        let newCard = shufDeck.pop();
+          dealerHand.push(newCard);
+          dealerPoint += getvalue(dealerHand[dealerHand.length-1])
+        let newImg = document.createElement("div");
+        newImg.classList.add("card", dealerHand[dealerHand.length-1]);
+        document.getElementById("dealerCard").append(newImg)
+} else {
+    return;
+}
 })
 
 
