@@ -49,7 +49,7 @@ for (let i = 0; i < 2; i++) {
        document.getElementById("dealerCard").append(newImg)
     
 }
-console.log(dealerHand)
+//console.log(dealerHand)
 
 
 };
@@ -72,9 +72,9 @@ buildPlayerHand();
 
 
 //setting the values of the cards
-let value = 0;
-let cards = shufDeck[0];
-function getvalue() {
+//let value = 0;
+function getvalue(card) {
+    const value = card.slice(1); // this helps slice the card so the value is returned. like it changes d07 t0 07 and dk to k.
     if (value === "A") {
         return 1;
     } else if (value == "J" || value == "K" || value == "Q") {
@@ -82,7 +82,10 @@ function getvalue() {
     } else {
         return parseInt(value)
     }
+
 }
+console.log(getvalue(dealerHand[1]))
+
  // start the game 
 
  document.getElementById("add").addEventListener("click", function(){
