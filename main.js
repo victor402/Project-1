@@ -77,7 +77,7 @@ buildPlayerHand();
 function getvalue(card) {
     const value = card.slice(1); // this helps slice the card so the value is returned. like it changes d07 t0 07 and dk to k.
     if (value === "A") {
-        return 1;
+        return 11;
     } else if (value == "J" || value == "K" || value == "Q") {
         return 10;
     } else {
@@ -110,7 +110,7 @@ function showCard() {
 })
 
 document.getElementById("add").addEventListener("click", function() {
-    if (dealerPoint < 20) {
+    if (dealerPoint < 18) {
         let newCard = shufDeck.pop();
           dealerHand.push(newCard);
           dealerPoint += getvalue(dealerHand[dealerHand.length-1])
@@ -125,14 +125,23 @@ document.getElementById("add").addEventListener("click", function() {
 
     document.getElementById("stop").addEventListener("click", function() {
         showCard();
+        document.getElementById("dealerSum").innerText = `Dealer total point is ${dealerPoint}!`
+        document.getElementById("playerSum").innerText = `Player total point is ${playerPoint}!`
         if (playerPoint > 21) {
-            return(`You point total is ${playerPoint}! You loose`)
+            
+            document.getElementById("result").innerText = "You loose!"
         } else  if (playerPoint > dealerPoint) {
-            return(`You point total is ${playerPoint}! You win`)
+            
+            document.getElementById("result").innerText = "You win!"
         } else if (dealerPoint > playerPoint) {
-            return(`You point total is ${playerPoint}! You loose`)
+            
+            document.getElementById("result").innerText = "You loose!"
+        } else if(dealerPoint > 21 && playerPoint < 21) {
+            document.getElementById("result").innerText = "You win!"
+        
         } else if (dealerPoint === playerPoint){
-            return("It's a draw")
+            
+            document.getElementById("result").innerText = "It's a draw!"
         }
  });
 
