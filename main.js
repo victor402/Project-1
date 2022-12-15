@@ -41,12 +41,13 @@ for (let i = 0; i < 2; i++) {
     dealerHand.push(lastCard); // the i helps use put the shufDeck cards into the// array.
     let newImg = document.createElement("div");
     if(i === 0) {
+        newImg.id = "hiddenCard";
         newImg.classList.add("card", "back")
     } else {
         newImg.classList.add("card", dealerHand[i]) // the i tells it to do the cards progressively.this are two strings.
     }
        dealerPoint += getvalue(dealerHand[i]); //dealer hand because thats where the card is and it will iterate it.
-       document.getElementById("dealerCard").append(newImg)
+       document.getElementById("dealerCard").append(newImg) // append give to the document
     
 }
 //console.log(dealerHand)
@@ -83,6 +84,12 @@ function getvalue(card) {
         return parseInt(value)
     }
 
+} 
+
+function showCard() {
+    
+    document.getElementById("hiddenCard").classList.remove("back");
+    document.getElementById("hiddenCard").classList.add(dealerHand[0]);
 }
 // we dont have to call the function if we already use return.
 //console.log(getvalue(dealerHand[1]))
@@ -101,6 +108,7 @@ function getvalue(card) {
         return;
     }
 })
+
 document.getElementById("add").addEventListener("click", function() {
     if (dealerPoint < 20) {
         let newCard = shufDeck.pop();
@@ -113,18 +121,19 @@ document.getElementById("add").addEventListener("click", function() {
     return;
 }
 })
+// stop the game 
 
-
-//     document.getElementById("stop").addEventListener("click", function() {
-//         if (playerPoint > 21) {
-//             return(`You point total is ${playerPoint}! You loose`)
-//         } else  if (playerPoint > dealerPoint) {
-//             return(`You point total is ${playerPoint}! You win`)
-//         } else if (dealerPoint > playerPoint) {
-//             return(`You point total is ${playerPoint}! You loose`)
-//         } else if (dealerPoint === playerPoint){
-//             return("It's a draw")
-//         }
-//  });
+    document.getElementById("stop").addEventListener("click", function() {
+        showCard();
+        if (playerPoint > 21) {
+            return(`You point total is ${playerPoint}! You loose`)
+        } else  if (playerPoint > dealerPoint) {
+            return(`You point total is ${playerPoint}! You win`)
+        } else if (dealerPoint > playerPoint) {
+            return(`You point total is ${playerPoint}! You loose`)
+        } else if (dealerPoint === playerPoint){
+            return("It's a draw")
+        }
+ });
 
 
