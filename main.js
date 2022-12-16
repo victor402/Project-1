@@ -1,10 +1,11 @@
 //console.log("hello world!");
 // building deck
-let playerPoint = 0;
-let dealerPoint = 0;
+//document.getElementById("startGame").addEventListener("click", )
+let playerPoint;
+let dealerPoint;
 const values = ["A", "02", "03", "04", "05", "06", "07", "08", "09", "10", "K", "Q", "J"]
 const suits = ["c", "d", "h", "s"]
-let deck = [];
+let deck ;
 function buildDeck(values, suits) {
     values.forEach(function(value) {
         suits.forEach(function(suit) {
@@ -16,10 +17,10 @@ function buildDeck(values, suits) {
     
     //console.log(deck, deck.length)
 }
-buildDeck(values, suits)
+// buildDeck(values, suits)
 
 //shuffling deck
-let shufDeck = [];
+let shufDeck ;
 function buildshufDeck() {
     for (let i = 0; i < 52; i++) {
         let number = 0;
@@ -30,11 +31,11 @@ function buildshufDeck() {
     }
 //console.log(shufDeck)
 }
-buildshufDeck()
+//buildshufDeck()
 
 
 // dealing the dealer's hand and player's hand
-const dealerHand = [];
+let dealerHand;
 function buidDealerHand() {
 for (let i = 0; i < 2; i++) {
     let lastCard = shufDeck.pop();
@@ -54,9 +55,9 @@ for (let i = 0; i < 2; i++) {
 
 
 };
-buidDealerHand();
+//buidDealerHand();
 
-const playerHand = [];
+let playerHand;
 function buildPlayerHand() {
     for (let i = 0; i < 2; i++) {
         let lastCard = shufDeck.pop() // the pop  let you remove the card from the back and give you new card.
@@ -69,7 +70,7 @@ function buildPlayerHand() {
     }
     //console.log(playerHand)
 }
-buildPlayerHand();
+//buildPlayerHand();
 
 
 //setting the values of the cards
@@ -144,5 +145,32 @@ document.getElementById("add").addEventListener("click", function() {
             document.getElementById("result").innerText = "It's a draw!"
         }
  });
+ function inertialize() {
+    playerPoint = 0;
+    dealerPoint = 0;
+    deck = [];
+    shufDeck = [];
+    dealerHand = [];
+    playerHand = [];
+  buildDeck(values, suits);
+  buildshufDeck()
+  buidDealerHand();
+  buildPlayerHand();
+}
+inertialize();
+ document.getElementById("newGame").addEventListener("click", function() {
+   const dealerCardEl = document.getElementById("dealerCard")
+     while (dealerCardEl.hasChildNodes()) {
+        dealerCardEl.removeChild(dealerCardEl.firstChild);
+      }
+      const playerCardEl = document.getElementById("playerCard")
+     while (playerCardEl.hasChildNodes()) {
+        playerCardEl.removeChild(playerCardEl.firstChild);
+      }
+      document.getElementById("result").innerText = " "
+      document.getElementById("dealerSum").innerText = " "
+      document.getElementById("playerSum").innerText = " "
+      inertialize();
+ }) 
 
 
