@@ -1,6 +1,10 @@
 //console.log("hello world!");
 // building deck
-//document.getElementById("startGame").addEventListener("click", )
+document.getElementById("startGame").addEventListener("click", function(){
+    document.getElementById("container").style.display = "block"
+    document.getElementById("startGame").style.display = "none"
+    document.getElementById("blackJack").style.display = "none"
+} )
 let playerPoint;
 let dealerPoint;
 const values = ["A", "02", "03", "04", "05", "06", "07", "08", "09", "10", "K", "Q", "J"]
@@ -157,7 +161,7 @@ document.getElementById("add").addEventListener("click", function() {
   buidDealerHand();
   buildPlayerHand();
 }
-inertialize();
+inertialize(); // inertialize helps get all the functions we called and declared.
  document.getElementById("newGame").addEventListener("click", function() {
    const dealerCardEl = document.getElementById("dealerCard")
      while (dealerCardEl.hasChildNodes()) {
